@@ -1,0 +1,118 @@
+<form
+  [formGroup]="productoForm"
+  (ngSubmit)="guardar()"
+>
+
+  <div>
+
+    <label>Nombre</label>
+
+    <input
+      type="text"
+      formControlName="nombre"
+    >
+
+    <div
+      *ngIf="
+      productoForm.get('nombre')?.invalid &&
+      (
+      productoForm.get('nombre')?.dirty ||
+      productoForm.get('nombre')?.touched
+      )
+      "
+    >
+
+      <small
+        *ngIf="
+        productoForm.get('nombre')
+        ?.errors?.['required']
+        "
+      >
+        El nombre es obligatorio
+      </small>
+
+      <small
+        *ngIf="
+        productoForm.get('nombre')
+        ?.errors?.['minlength']
+        "
+      >
+        Debe tener al menos 3 caracteres
+      </small>
+
+    </div>
+
+  </div>
+
+  <br>
+
+  <div>
+
+    <label>Categoría</label>
+
+    <select formControlName="categoria">
+
+      <option value="">
+        Seleccione...
+      </option>
+
+      <option value="1">
+        Electrónica
+      </option>
+
+      <option value="2">
+        Hogar
+      </option>
+
+    </select>
+
+  </div>
+
+  <br>
+
+  <div>
+
+    <label>Precio</label>
+
+    <input
+      type="number"
+      formControlName="precio"
+    >
+
+  </div>
+
+  <br>
+
+  <div>
+
+    <label>Stock</label>
+
+    <input
+      type="number"
+      formControlName="stock"
+    >
+
+  </div>
+
+  <br>
+
+  <div>
+
+    <label>Descripción</label>
+
+    <textarea
+      formControlName="descripcion"
+    ></textarea>
+
+  </div>
+
+  <br>
+
+  <button
+    type="submit"
+    [disabled]="productoForm.invalid"
+  >
+    Guardar Producto
+  </button>
+
+</form>
